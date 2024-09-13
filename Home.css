@@ -1,0 +1,322 @@
+/* RESET STYLESHEET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* BASE STYLES */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    /* height: 100vh; */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+/* HEADER STYLES */
+header {
+    position: fixed; /* Fix header at the top while allowing the content to scroll */
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    z-index: 1000;
+    background-color: rgba(255, 255, 255, 0.3); /* Semi-transparent white */
+    /* backdrop-filter: blur(5px);  */
+    transition: transform 0.3s ease;
+
+      
+}
+
+header .logo img {
+    width: 75px;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    transition: transform 0.5s ease; /* Smooth animation for drawer effect */
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    font-size: 17px;
+    color: black; /* Text color is now black */
+    text-decoration: none; /* Removes underline from links */
+}
+
+nav ul li a:hover {
+    text-decoration: underline; /* Optional: Adds underline on hover */
+}
+
+/* Menu toggle button */
+.menu-toggle {
+    display: none; /* Initially hidden on larger screens */
+    cursor: pointer;
+}
+
+.nav-close {
+    /* Initially hidden */
+    display: none; 
+}
+
+.menu-toggle img {
+    width: 50px;
+    height: auto;
+}
+
+/* HERO SECTION */
+.hero {
+    position: relative;
+    /* Taller height to allow scrolling to see full background image */
+    /* height: 150vh;  */
+    height: 100vh; 
+    background: url('Images/homeBg.png') no-repeat center center/cover;
+    background-attachment: scroll;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+    /* background-position: top; Ensure the top part of the image is visible */
+}
+
+.overlay {
+    /* position: absolute; */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.contentContainer {
+    top: 275px;
+    margin-left: 9.5rem;
+    position: absolute;
+    color: white;
+    max-width: 800px;
+    padding: 0 1%;
+    padding-bottom: 50px;
+}
+
+.contentContainer h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.contentContainer p {
+    font-size: 1.5rem;
+    line-height: 1.5;
+}
+
+/* Drawer effect for the nav on mobile */
+@media (max-width: 768px) {
+    /* header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+    } */
+
+    .logo {
+        flex: 1;
+    }
+
+    .menu-toggle {
+        display: flex; /* Show hamburger icon on small screens */
+        justify-content: flex-end;
+        margin-right: 20px;
+    }
+
+    /* nav {
+        display: flex;
+        flex-direction: row;
+    } */
+
+    nav ul {
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 50vh;
+        width: 350px;
+        /* padding-top: 70px; */
+        /* gap: 50px; */
+        background-color: rgba(0, 0, 0, 0.8); /* Dark background for drawer */
+        backdrop-filter: blur(9px);
+        /* display: flex; */
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transform: translateX(100%); /* Initially hidden offscreen */
+        transition: transform 0.5s ease; /* Smooth animation for sliding */
+    }
+
+
+    nav ul.open {
+        transform: translateX(0); /* Bring the menu into view */
+    }
+
+    nav ul li {
+        margin: 20px 0;
+        width: 100%;
+        text-align: center;
+        /* display: flex; */
+        /* flex-direction: column; */
+    }
+
+    nav ul li a {
+        font-size: 1.2rem;
+        color: white;
+        display: block;
+        /* width: 100%; */
+    }
+
+
+    /* Adjusted positioning for the close icon */
+    .nav-close {
+        display: none;
+        position: absolute;
+        top: 45px;
+        right: 45px;
+        cursor: pointer;
+        z-index: 1; /* Ensure it's above the nav drawer */
+    }
+
+    .nav-close img {
+        width: 30px;
+        height: auto;
+        /* font-weight: 800; */
+        /* display: block; */
+
+    }
+
+    nav ul.open .nav-close {
+        /* Show the close icon when sidebar opens */
+        display: block;
+    }
+
+    .contentContainer {
+        max-width: 90%;
+        padding: 0px !important;
+        margin-left: 20px !important;
+    }
+
+    .contentContainer h1 {
+        font-size: 2rem;
+    }
+
+    .contentContainer p {
+        font-size: 0.9rem;
+    }
+}
+
+/* RESPONSIVE DESIGN FOR MEDIUM SCREENS */
+@media (max-width: 1024px) {
+    nav ul {
+        flex-direction: row;
+    }
+
+    .contentContainer h1 {
+        font-size: 2.5rem;
+    }
+
+    .contentContainer {
+        top: 250px;
+        margin-left: 20px;
+    }
+
+    .contentContainer p {
+        font-size: 0.95rem;
+    }
+
+}
+
+/* RESPONSIVE DESIGN FOR SMALLER SCREENS */
+/* @media (max-width: 900px) {
+    nav ul {
+        flex-direction: column;
+    }
+
+    .contentContainer {
+        max-width: 90% !important;
+        padding: 0px !important;
+        margin-left: 2rem !important;
+    }
+
+    .contentContainer h1 {
+        font-size: 2.5rem;
+    }
+
+    .contentContainer p {
+        font-size: 0.95rem;
+    }
+} */
+
+@media (max-width: 480px) {
+    .contentContainer h1 {
+        font-size: 1.8rem;
+    }
+
+    .contentContainer p {
+        font-size: 0.85rem;
+    }
+
+    .contentContainer {
+        max-width: 100% !important;
+        padding: 0px !important;
+        margin: 0px 10px !important;
+    }
+
+    nav ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 250px;
+    }
+
+    nav ul li {
+        margin-top: 10px;
+    }
+
+    .nav-close {
+        display: block;
+    }
+}
+
+/* Nav close styles */
+
+
+/* .nav-close img {
+    width: 25px;
+    height: auto;
+} */
+/* ----------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+/* Styling for the iframe */
+.second-section-frame {
+    width: 100%;
+    height: 100vh; /* You can adjust the height as needed */
+    border: none;  /* Remove iframe border */
+    display: flex;
+    justify-content: center;
+}
+
+
+
+/* Ensure iframe is responsive and scrolls with the whole page */
+iframe {
+    width: 100%;  
+    height: 100%;  /* Full viewport height */
+    border: none;  
+}
+
+
